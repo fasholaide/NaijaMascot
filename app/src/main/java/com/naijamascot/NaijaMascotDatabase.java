@@ -23,7 +23,14 @@ public class NaijaMascotDatabase extends SQLiteAssetHelper {
         SQLiteDatabase db = getReadableDatabase();
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-        String sqlSelect [] = {};
+        String sqlSelect [] = {
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_FIRSTNAME,
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_LASTNAME,
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_HINT,
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_ANSWER,
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_IMAGE,
+                NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_CATEGORY
+        };
         String sqlTable = Table.NAIJAMASCOTS;
         queryBuilder.setTables(sqlTable);
 

@@ -1,37 +1,37 @@
 package com.naijamascot;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.widget.ListAdapter;
 
-public class gamepane_activity extends AppCompatActivity {
+public class gamepane_activity extends ListActivity {
+
+    private Cursor naijaMascots;
+    private NaijaMascotDatabase db;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gamepane_activity);
+
+        db = new NaijaMascotDatabase(this);
+        naijaMascots = db.getMascots(); // you would not typically call this on the main thread
+
+        ListAdapter adapter = new SimpleCursorAdapter(
+                this,
+                R.id.listView,
+                naijaMascots,
+                new String[] {NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_FIRSTNAME},
+                new int[] {R.id.textName});
+
+        getListView().setAdapter(adapter);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_gamepane_activity, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected void onDestroy() {
+        super.onDestroy();
+        naijaMascots.close();
+        db.close();
     }
 }
