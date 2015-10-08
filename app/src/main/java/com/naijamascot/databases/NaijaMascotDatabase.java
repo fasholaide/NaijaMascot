@@ -1,4 +1,4 @@
-package com.naijamascot;
+package com.naijamascot.databases;
 
 import android.content.Context;
 import android.database.Cursor;

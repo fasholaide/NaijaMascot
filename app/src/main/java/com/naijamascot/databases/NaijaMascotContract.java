@@ -1,4 +1,4 @@
-package com.naijamascot;
+package com.naijamascot.databases;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
  */
 public class NaijaMascotContract {
 
-    interface NaijaMascotColumns{
+    public interface NaijaMascotColumns{
         String NAIJAMASCOT_FIRSTNAME = "Firstname";
         String NAIJAMASCOT_LASTNAME = "Lastname";
         String NAIJAMASCOT_HINT = "Hint";
