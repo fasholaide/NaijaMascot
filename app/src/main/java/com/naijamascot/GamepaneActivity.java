@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GamepaneActivity extends Activity {
+public class GamepaneActivity extends ListActivity {
 
     private Cursor naijaMascots;
     private NaijaMascotDatabase db;
@@ -19,7 +19,8 @@ public class GamepaneActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = (ListView)findViewById(R.id.listView);
+        setContentView(R.layout.gamepane_activity);
+        //ListView listView = (ListView)findViewById(R.id.listView);
 
         db = new NaijaMascotDatabase(this);
         naijaMascots = db.getMascots(); // you would not typically call this on the main thread
@@ -32,8 +33,8 @@ public class GamepaneActivity extends Activity {
             }
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_example_layout, firstNameArayList);
-        listView.setAdapter(arrayAdapter);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.list_example_layout, R.id.textName, firstNameArayList);
+        setListAdapter(arrayAdapter);
     }
 
     @Override
