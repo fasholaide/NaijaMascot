@@ -3,4 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!--This is the list of all the id names for the Objects -->
+    <string name = "mascot_hint">HINT</string>
 </resources>
