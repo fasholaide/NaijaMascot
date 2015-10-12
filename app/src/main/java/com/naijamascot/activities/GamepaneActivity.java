@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,13 +31,13 @@ public class GamepaneActivity extends Activity {
     private List<Integer> NaijaMascotShuffle = new NaijaMascotUtil(NUMBER_OF_MASCOTS).getShuffleArray();
     private byte[] naijaMascotImage;
     private String firstName, lastName, hint, answer;
+    private ImageView mascotImageView;
+    private TextView hintTextView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamepane_activity);
-        ImageView mascotImageView;
-        TextView hintTextView;
 
         LoadNaijaMascotFromDataBase loadNaijaMascotFromDataBase = new LoadNaijaMascotFromDataBase();
         try {
@@ -47,9 +49,28 @@ public class GamepaneActivity extends Activity {
             Log.d(NAIJAMASCOT_UI_THREAD, "ExecutionException" + " " + ex.getMessage());
             System.exit(1);
         }
+        renderPaneForPlay(count);
 
+        //Set the Action That happens When the Next Button isPressed
+        Button button = (Button) findViewById(R.id.nextMascot);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count++;
+                renderPaneForPlay(count);
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        naijaMascots.close();
+    }
+
+    private void renderPaneForPlay(int count) {
         if (naijaMascots.moveToFirst()) {
-            naijaMascots.moveToPosition(NaijaMascotShuffle.get(count));
+            naijaMascots.moveToPosition(NaijaMascotShuffle.get(count) - 1);
             naijaMascotImage = naijaMascots.getBlob(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_IMAGE));
             firstName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_FIRSTNAME));
             lastName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_LASTNAME));
@@ -58,21 +79,15 @@ public class GamepaneActivity extends Activity {
         }
         //Set the Image in place
         InputStream inputStream = new ByteArrayInputStream(naijaMascotImage);
-        mascotImageView = (ImageView) findViewById(R.id.mascot);
+        mascotImageView = (ImageView) findViewById(R.id.mascotImageView);
         mascotImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         mascotImageView.setAdjustViewBounds(true);
         mascotImageView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
         //Set the Hint Value in place
-        hintTextView = (TextView) findViewById(R.id.mascotHint);
+        hintTextView = (TextView) findViewById(R.id.mascotHintText);
         hintTextView.setText(hint);
-
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        naijaMascots.close();
-    }
 
     private class LoadNaijaMascotFromDataBase extends AsyncTask<Context, Integer, Cursor> {
         @Override
