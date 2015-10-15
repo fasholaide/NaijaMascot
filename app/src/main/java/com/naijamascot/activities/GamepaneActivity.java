@@ -3,6 +3,7 @@ package com.naijamascot.activities;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class GamepaneActivity extends Activity {
+
+    //TO-DO Show the count of the mascot played on the Screen
+    //Give a Count of the characters to be typed on the screen for each mascot.
+    //Listen to the numbers of Charcaters typed and give the rmaining number of remaining Characters.
 
     private final String NAIJAMASCOT_UI_THREAD = "NAIJAMASCOT_UI_THREAD";
     private Cursor naijaMascots;
@@ -69,27 +74,38 @@ public class GamepaneActivity extends Activity {
     }
 
     private void renderPaneForPlay(int count) {
-        if (naijaMascots.moveToFirst()) {
-            naijaMascots.moveToPosition(NaijaMascotShuffle.get(count) - 1);
-            naijaMascotImage = naijaMascots.getBlob(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_IMAGE));
-            firstName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_FIRSTNAME));
-            lastName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_LASTNAME));
-            answer = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_ANSWER));
-            hint = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_HINT));
+        try {
+            int previousPosition = 0;
+            int position = NaijaMascotShuffle.get(count);
+            if (position == 50) {
+                previousPosition = position;
+            }
+            if (naijaMascots.getCount() == NUMBER_OF_MASCOTS) {
+                naijaMascots.moveToPosition(previousPosition == 50 ? position - previousPosition : position);
+                naijaMascotImage = naijaMascots.getBlob(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_IMAGE));
+                firstName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_FIRSTNAME));
+                lastName = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_LASTNAME));
+                answer = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_ANSWER));
+                hint = naijaMascots.getString(naijaMascots.getColumnIndex(NaijaMascotContract.NaijaMascotColumns.NAIJAMASCOT_HINT));
+            }
+            //Set the Image in place
+            InputStream inputStream = new ByteArrayInputStream(naijaMascotImage);
+            mascotImageView = (ImageView) findViewById(R.id.mascotImageView);
+            mascotImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            mascotImageView.setAdjustViewBounds(true);
+            mascotImageView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
+            //Set the Hint Value in place
+            hintTextView = (TextView) findViewById(R.id.mascotHintText);
+            hintTextView.setText(hint);
+        } catch (CursorIndexOutOfBoundsException ex) {
+            Log.d(NAIJAMASCOT_UI_THREAD, "The count is " + count + " " + "The position I am requesting for is " + NaijaMascotShuffle.get(count) + "\n"
+                    + "The position I am on is " + naijaMascots.getPosition());
         }
-        //Set the Image in place
-        InputStream inputStream = new ByteArrayInputStream(naijaMascotImage);
-        mascotImageView = (ImageView) findViewById(R.id.mascotImageView);
-        mascotImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        mascotImageView.setAdjustViewBounds(true);
-        mascotImageView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
-        //Set the Hint Value in place
-        hintTextView = (TextView) findViewById(R.id.mascotHintText);
-        hintTextView.setText(hint);
     }
 
 
     private class LoadNaijaMascotFromDataBase extends AsyncTask<Context, Integer, Cursor> {
+
         @Override
         protected Cursor doInBackground(Context... context) {
             NaijaMascotDatabase db = new NaijaMascotDatabase(context[0]);

@@ -18,10 +18,9 @@ public class NaijaMascotUtil {
 
     public List<Integer> getShuffleArray(){
         for (int i = 1; i <= NUMBER_OF_MASCOTS; i++ ){
-            SHUFFLE_ARRAY.add(i);
+            SHUFFLE_ARRAY.add(i - 1, i);
         }
         Collections.shuffle(SHUFFLE_ARRAY);
         return SHUFFLE_ARRAY;
     }
-
 }
