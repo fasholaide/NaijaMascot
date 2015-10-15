@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,8 +58,8 @@ public class GamepaneActivity extends Activity {
         renderPaneForPlay(count);
 
         //Set the Action That happens When the Next Button isPressed
-        Button button = (Button) findViewById(R.id.nextMascot);
-        button.setOnClickListener(new View.OnClickListener() {
+        TextView nextMascot = (TextView) findViewById(R.id.nextMascot);
+        nextMascot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count++;
@@ -91,12 +92,20 @@ public class GamepaneActivity extends Activity {
             //Set the Image in place
             InputStream inputStream = new ByteArrayInputStream(naijaMascotImage);
             mascotImageView = (ImageView) findViewById(R.id.mascotImageView);
-            mascotImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            mascotImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            mascotImageView.setBackgroundColor(Color.parseColor("white"));
             mascotImageView.setAdjustViewBounds(true);
+            mascotImageView.setPadding(2, 2, 2, 2);
+            mascotImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             mascotImageView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
             //Set the Hint Value in place
-            hintTextView = (TextView) findViewById(R.id.mascotHintText);
-            hintTextView.setText(hint);
+            //hintTextView = (TextView) findViewById(R.id.mascotHintText);
+            //hintTextView.setText(hint);
         } catch (CursorIndexOutOfBoundsException ex) {
             Log.d(NAIJAMASCOT_UI_THREAD, "The count is " + count + " " + "The position I am requesting for is " + NaijaMascotShuffle.get(count) + "\n"
                     + "The position I am on is " + naijaMascots.getPosition());
