@@ -1,6 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".gamepane_activity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".gamepane_activity">
+    <item
+        android:id="@+id/mascotShare"
+        android:icon="@drawable/ic_share_black_18dp"
+        android:title="@string/mascotHintBar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mascotHint"
+        android:icon="@drawable/ic_help_outline_black_18dp"
+        android:title="@string/mascotShareBar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mascotPerson"
+        android:icon="@drawable/ic_person_outline_black_18dp"
+        android:title="@string/mascotKnowBar"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 </menu>

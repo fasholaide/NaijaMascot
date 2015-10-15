@@ -8,7 +8,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,7 +28,9 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class GamepaneActivity extends Activity {
+import android.app.ActionBar;
+
+public class GamepaneActivity extends AppCompatActivity {
 
     //TO-DO Show the count of the mascot played on the Screen
     //Give a Count of the characters to be typed on the screen for each mascot.
@@ -74,6 +80,14 @@ public class GamepaneActivity extends Activity {
         naijaMascots.close();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_gamepane_activity, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void renderPaneForPlay(int count) {
         try {
             int previousPosition = 0;
@@ -93,7 +107,7 @@ public class GamepaneActivity extends Activity {
             InputStream inputStream = new ByteArrayInputStream(naijaMascotImage);
             mascotImageView = (ImageView) findViewById(R.id.mascotImageView);
             mascotImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            mascotImageView.setBackgroundColor(Color.parseColor("white"));
+            mascotImageView.setBackgroundColor(Color.rgb(190, 216, 229));
             mascotImageView.setAdjustViewBounds(true);
             mascotImageView.setPadding(2, 2, 2, 2);
             mascotImageView.setOnClickListener(new View.OnClickListener() {

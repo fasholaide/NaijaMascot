@@ -2,154 +2,145 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:backgroundTint="@color/blue"
+    android:backgroundTint="@color/themebluehue"
     android:backgroundTintMode="add"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".gamepane_activity">
 
-    <TableLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:paddingRight="3dip"
-        android:paddingLeft="3dip"
-        android:paddingBottom="3dip"
-        android:paddingTop="3dip"
-        android:paddingEnd="3dip"
-        android:paddingStart="3dip"
-        android:stretchColumns="0,1,2"
-        android:background="@color/darkblue">
+    <!--<TableLayout-->
+    <!--android:id="@+id/linearLayout2"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@color/themeblue"-->
+    <!--android:paddingBottom="3dip"-->
+    <!--android:paddingEnd="3dip"-->
+    <!--android:paddingLeft="3dip"-->
+    <!--android:paddingRight="3dip"-->
+    <!--android:paddingStart="3dip"-->
+    <!--android:paddingTop="3dip"-->
+    <!--android:stretchColumns="0,1,2">-->
 
-        <TableRow>
+    <!--<TableRow>-->
 
-            <TextView
-                android:id="@+id/mascotCount"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
-                android:paddingBottom="3dip"
-                android:paddingTop="3dip"
-                android:paddingEnd="3dip"
-                android:textSize="25sp"
-                android:text="@string/mascotCount" />
+    <!--<TextView-->
+    <!--android:id="@+id/mascotCount"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="3dip"-->
+    <!--android:paddingBottom="3dip"-->
+    <!--android:paddingEnd="3dip"-->
+    <!--android:paddingLeft="3dip"-->
+    <!--android:paddingRight="3dip"-->
+    <!--android:paddingTop="3dip"-->
+    <!--android:text="@string/mascotCount"-->
+    <!--android:textSize="25sp" />-->
 
-            <TextView
-                android:id="@+id/mascotLogoPlaceHolder"
-                style="@android:style/Theme.Black"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
-                android:paddingBottom="3dip"
-                android:paddingTop="3dip"
-                android:paddingEnd="3dip"
-                android:textSize="25sp"
-                android:text="@string/logoPlaceHolder" />
+    <!--<TextView-->
+    <!--android:id="@+id/mascotLogoPlaceHolder"-->
+    <!--style="@android:style/Theme.Black"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="3dip"-->
+    <!--android:paddingBottom="3dip"-->
+    <!--android:paddingEnd="3dip"-->
+    <!--android:paddingLeft="3dip"-->
+    <!--android:paddingRight="3dip"-->
+    <!--android:paddingTop="3dip"-->
+    <!--android:text="@string/logoPlaceHolder"-->
+    <!--android:textSize="25sp" />-->
 
-            <TextView
-                android:id="@+id/pointsAndRewards"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="center"
-                android:textSize="25sp"
-                android:text="@string/mascotPoints"
-                android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
-                android:paddingBottom="3dip"
-                android:paddingTop="3dip"
-                android:paddingEnd="3dip"/>
+    <!--<TextView-->
+    <!--android:id="@+id/pointsAndRewards"-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="fill_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="3dip"-->
+    <!--android:paddingBottom="3dip"-->
+    <!--android:paddingEnd="3dip"-->
+    <!--android:paddingLeft="3dip"-->
+    <!--android:paddingRight="3dip"-->
+    <!--android:paddingTop="3dip"-->
+    <!--android:text="@string/mascotPoints"-->
+    <!--android:textSize="25sp" />-->
+    <!--<ImageButton />-->
 
-        </TableRow>
+    <!--</TableRow>-->
 
 
-    </TableLayout>
+    <!--</TableLayout>-->
 
     <ImageView
         android:id="@+id/mascotImageView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/linearLayout"
-        android:layout_alignEnd="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/linearLayout2"
-        android:layout_below="@+id/linearLayout2" />
+        android:layout_alignParentStart="true" />
+
 
     <TableLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:paddingRight="3dip"
-        android:paddingLeft="3dip"
-        android:paddingBottom="3dip"
-        android:paddingTop="3dip"
-        android:paddingEnd="3dip"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/darkblue"
+        android:background="@color/themeblue"
+        android:paddingBottom="3dip"
+        android:paddingEnd="3dip"
+        android:paddingLeft="3dip"
+        android:paddingRight="3dip"
+        android:paddingTop="3dip"
         android:stretchColumns="0,1,2">
 
         <TableRow>
 
-            <TextView
-                android:id="@+id/mascotHintClickable"
-                style="@android:style/MediaButton.Next"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+            <ImageButton
+                android:id="@+id/mascotCallRescue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
+                android:cropToPadding="true"
                 android:gravity="center"
                 android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
                 android:paddingBottom="3dip"
-                android:paddingTop="3dip"
                 android:paddingEnd="3dip"
-                android:text="@string/mascotHint"
-                android:textSize="25sp" />
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip"
+                android:paddingTop="3dip"
+                android:src="@drawable/ic_local_phone_black_36dp" />
 
-            <TextView
+            <ImageButton
                 android:id="@+id/mascot"
-                style="@android:style/MediaButton.Next"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
+                android:cropToPadding="true"
                 android:gravity="center"
                 android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
                 android:paddingBottom="3dip"
-                android:paddingTop="3dip"
                 android:paddingEnd="3dip"
-                android:text="@string/mascotAnswer"
-                android:textSize="25sp" />
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip"
+                android:paddingTop="3dip"
+                android:src="@drawable/ic_cancel_black_36dp" />
 
-            <TextView
+            <ImageButton
                 android:id="@+id/nextMascot"
                 style="@android:style/MediaButton.Next"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:clickable="true"
+                android:cropToPadding="true"
                 android:gravity="center"
                 android:padding="3dip"
-                android:paddingRight="3dip"
-                android:paddingLeft="3dip"
                 android:paddingBottom="3dip"
-                android:paddingTop="3dip"
                 android:paddingEnd="3dip"
-                android:text="@string/nextMascot"
-                android:textSize="25sp" />
+                android:paddingLeft="3dip"
+                android:paddingRight="3dip"
+                android:paddingTop="3dip"
+                android:src="@drawable/ic_chevron_right_black_36dp" />
         </TableRow>
-
     </TableLayout>
-
 </RelativeLayout>

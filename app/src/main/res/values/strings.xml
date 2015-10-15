@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NAIJA MASCOT</string>
+    <string name="app_name">NJ MASCOTS</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -10,6 +10,17 @@
     <string name="mascotAnswer">ANSWER</string>
     <string name="logoPlaceHolder">NJM</string>
 
-    <string name="mascotCount">0050</string>
-    <string name="mascotPoints">0001</string>
+    <!--The lit of strings for the ActionBar Icons -->
+    <string name="mascotHintBar">MascotHint</string>
+    <string name="mascotShareBar">MascotShare</string>
+    <string name="mascotKnowBar">MascotPerson</string>
+
+    <!--The rank of the player -->
+    <string-array name="playerRank">
+        <item>Beginner</item>
+        <item>Advanced Beginner</item>
+        <item>Medium</item>
+        <item>Pro-Master</item>
+        <item>Master</item>
+    </string-array>
 </resources>
