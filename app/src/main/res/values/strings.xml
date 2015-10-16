@@ -23,4 +23,9 @@
         <item>Pro-Master</item>
         <item>Master</item>
     </string-array>
+
+    <!--The list of Strings for Bar + Ranks + Points -->
+    <string name="mascotLevel">LEVEL</string>
+    <string name="mascotPoints">POINTS</string>
+    <string name="mascotRank">RANK</string>
 </resources>

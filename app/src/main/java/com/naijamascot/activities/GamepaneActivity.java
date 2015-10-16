@@ -1,6 +1,5 @@
 package com.naijamascot.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
@@ -8,13 +7,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +25,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
-import android.app.ActionBar;
 
 public class GamepaneActivity extends AppCompatActivity {
 
@@ -64,7 +60,7 @@ public class GamepaneActivity extends AppCompatActivity {
         renderPaneForPlay(count);
 
         //Set the Action That happens When the Next Button isPressed
-        TextView nextMascot = (TextView) findViewById(R.id.nextMascot);
+        ImageButton nextMascot = (ImageButton) findViewById(R.id.nextMascot);
         nextMascot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
